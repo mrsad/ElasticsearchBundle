@@ -1,5 +1,5 @@
 {
-    "name": "ongr/elasticsearch-bundle",
+    "name": "mrsad/elasticsearch-bundle",
     "description": "Elasticsearch bundle for Symfony.",
     "type": "symfony-bundle",
     "homepage": "http://ongr.io",
@@ -44,7 +44,7 @@
     "minimum-stability": "dev",
     "extra": {
         "branch-alias": {
-            "dev-master": "5.1-dev"
+            "dev-master": "6.0-dev"
         }
     }
 }
