@@ -126,8 +126,8 @@ class ManagerFactory
 
         $this->eventDispatcher &&
             $this->eventDispatcher->dispatch(
-                Events::PRE_MANAGER_CREATE,
-                new PreCreateManagerEvent($client, $indexSettings)
+                new PreCreateManagerEvent($client, $indexSettings),
+                Events::PRE_MANAGER_CREATE
             );
 
         $manager = new Manager(
@@ -149,7 +149,7 @@ class ManagerFactory
         $manager->setBulkCommitSize($managerConfig['bulk_size']);
 
         $this->eventDispatcher &&
-            $this->eventDispatcher->dispatch(Events::POST_MANAGER_CREATE, new PostCreateManagerEvent($manager));
+            $this->eventDispatcher->dispatch(new PostCreateManagerEvent($manager), Events::POST_MANAGER_CREATE);
 
         return $manager;
     }
