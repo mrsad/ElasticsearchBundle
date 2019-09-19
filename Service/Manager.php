@@ -395,8 +395,8 @@ class Manager
             $bulkQueries = array_merge($this->bulkQueries, $this->bulkParams);
             $bulkQueries['index']['_index'] = $this->getIndexName();
             $this->eventDispatcher->dispatch(
-                Events::PRE_COMMIT,
-                new CommitEvent($this->getCommitMode(), $bulkQueries)
+                new CommitEvent($this->getCommitMode(), $bulkQueries),
+                Events::PRE_COMMIT
             );
 
             $this->stopwatch('start', 'bulk');
@@ -427,8 +427,8 @@ class Manager
             }
 
             $this->eventDispatcher->dispatch(
-                Events::POST_COMMIT,
-                new CommitEvent($this->getCommitMode(), $bulkResponse)
+                new CommitEvent($this->getCommitMode(), $bulkResponse),
+                Events::POST_COMMIT
             );
 
             $this->stopwatch('stop', 'refresh');
@@ -457,8 +457,8 @@ class Manager
         }
 
         $this->eventDispatcher->dispatch(
-            Events::BULK,
-            new BulkEvent($operation, $type, $query)
+            new BulkEvent($operation, $type, $query),
+            Events::BULK
         );
 
         $this->bulkQueries['body'][] = [
